@@ -37,7 +37,6 @@ body {
 
 .field__item {
     height: 60px;
-    border: 1px solid gray;
 }
 
 .field__item > img {
