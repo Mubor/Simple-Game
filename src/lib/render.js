@@ -2,7 +2,6 @@ const heroImg = '<img src="../img/knight.png" alt="hero">';
 const treeImg = '<img src="../img/tree.png" alt="tree">';
 
 export default function render(field, cells) {
-  debugger;
   for (let i = 0; i < field.length; i++) {
     for (let j = 0; j < field[0].length; j++) {
       if (field[i][j] === 0) {

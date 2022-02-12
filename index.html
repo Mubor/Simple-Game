@@ -11,10 +11,18 @@
     <div class="wrap">
         <input type="number" name="columns" id="columns" value="" placeholder="Введите количество колонок">
         <input type="number" name="rows" id="rows" value="" placeholder="Введите количество рядов">
-        <input type="number" name="rows" id="trees" value="" placeholder="Введите количество деревьев">
+        <input type="number" name="trees" id="trees" value="" placeholder="Введите количество деревьев">
         <button id="start">Начать</button>
     </div>
     <div class="field"></div>
+    <div class="controllers">
+        <div class="controllers__row"><button id="move-up">W</button></div>
+        <div class="controllers__row">
+            <button id="move-left">A</button>
+            <button id="move-down">S</button>
+            <button id="move-right">D</button>
+        </div>
+    </div>
     <script src="dist/main.js" type="module"></script>
 </body>
 </html>

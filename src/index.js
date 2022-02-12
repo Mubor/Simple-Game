@@ -35,11 +35,7 @@ function moveX(direction) {
   }
 }
 
-function gameStart() {
-  let cols = document.getElementById('columns').value;
-  let rows = document.getElementById('rows').value;
-  let trees = document.getElementById('trees').value;
-
+function gameStart(cols, rows, trees) {
   field = generateField(cols, rows, trees);
   createNet(cols, rows);
   fieldItems = document.querySelectorAll('.field__item');
@@ -47,23 +43,40 @@ function gameStart() {
 
   document.querySelector('.wrap').style.display = 'none';
   document.querySelector('.field').style.display = 'grid';
+  document.querySelector('.controllers').style.display = 'block';
 
   canMove = true;
 }
 
-function validation() {
-  let colsInput = document.getElementById('columns');
-  let rowsInput = document.getElementById('rows');
-  let treesInput = document.getElementById('trees');
+function buttonMoveHandler(obj) {
+  if(canMove) {
+    if (obj.id === 'move-up') moveY(-1);
+    else if (obj.id === 'move-down') moveY(1);
+    else if (obj.id === 'move-right') moveX(1);
+    else if (obj.id === 'move-left') moveX(-1);
+    
+    canMove = false;
+    setTimeout( () => canMove = true, 5000);
+    render(field, fieldItems);
+  }
+}
 
-  if (colsInput.value === '' || rowsInput.value === '' || treesInput.value === '') {
+function validation() {
+  let cols = document.getElementById('columns').value;
+  let rows = document.getElementById('rows').value;
+  let trees = document.getElementById('trees').value;
+
+  if (cols === '' || rows === '' || trees === '') {
       alert('Все поля должны быть заполнены!');
-  } 
-  else if (treesInput.value >= colsInput.value * rowsInput.value / 4) {
+    } 
+  else if (cols > 32 || rows > 16) {
+      alert('Многовато клеток!');
+    }
+  else if (trees >= cols * rows / 4) {
       alert('Слишком много деревьев!');
   }
   else {
-      gameStart();
+      gameStart(cols, rows, trees);
   }
 }
 
@@ -81,4 +94,8 @@ document.addEventListener('keydown', (event) => {
 });
 
 document.getElementById('start').addEventListener('click', validation);
+document.getElementById('move-up').addEventListener('click', buttonMoveHandler.bind(this, document.getElementById('move-up')));
+document.getElementById('move-down').addEventListener('click', buttonMoveHandler.bind(this, document.getElementById('move-down')));
+document.getElementById('move-left').addEventListener('click', buttonMoveHandler.bind(this, document.getElementById('move-left')));
+document.getElementById('move-right').addEventListener('click', buttonMoveHandler.bind(this, document.getElementById('move-right')));
 
