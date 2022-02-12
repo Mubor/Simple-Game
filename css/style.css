@@ -10,11 +10,38 @@ body {
     /* background-color: gray; */
 }
 
+.wrap {
+    margin: 0 auto;
+    width: 20%;
+}
+
+.wrap > * {
+    display: block;
+    margin: 2% auto;
+    padding: 2%;
+    font-size: 20px;
+}
+
+.wrap > input {
+    width: 80%;
+}
+
+.wrap > button {
+    width: 30%;
+    text-align: center;
+}
+
 .field {
-    display: grid;
-    grid-template-columns: 60px 60px 60px 60px 60px 60px;
+    display: none;
 }
 
 .field__item {
     height: 60px;
+    border: 1px solid gray;
+}
+
+.field__item > img {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(31, 27, 53);
 }
